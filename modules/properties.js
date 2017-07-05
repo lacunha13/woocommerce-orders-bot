@@ -7,7 +7,8 @@ const props = {};
 properties.parse(path.join(__dirname, '../config/application.properties'),
     {
         path: true,
-        sections: true
+        sections: true,
+        namespaces: true
     },
     function(error, obj) {
         if (error) return console.error (error);
@@ -15,4 +16,6 @@ properties.parse(path.join(__dirname, '../config/application.properties'),
 });
 
 module.exports = props;
+
+console.info("properties.js: module loaded!");
 
