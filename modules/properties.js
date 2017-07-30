@@ -1,21 +1,30 @@
 
-const extend = require('lodash/extend');
-const path = require('path');
+'use strict';
+
+const _ = require("lodash");
+const path = require("path");
 const properties = require ("properties");
-const props = {};
+const Promise = require("promise");
 
-properties.parse(path.join(__dirname, '../config/application.properties'),
-    {
-        path: true,
-        sections: true,
-        namespaces: true
-    },
-    function(error, obj) {
-        if (error) return console.error (error);
-        extend(props, obj);
-});
+var props;
 
-module.exports = props;
-
-console.info("properties.js: module loaded!");
-
+function logStatus() {
+  console.info("=== Properties ===");
+  console.info(props);
+}
+module.exports = function() {
+    return new Promise(function (fulfill, reject){
+        properties.parse(path.join(__dirname, "../config/application.properties"),
+            {
+                path: true,
+                sections: true,
+                namespaces: true
+            },
+            function(error, obj) {
+                if (error) return reject (error);
+                props = obj;
+                fulfill(props);
+                logStatus();
+            });
+    });
+};

@@ -13,6 +13,7 @@
     "express": "~4.15.2",
     "lodash": "^4.17.4",
     "morgan": "~1.8.1",
+    "promise": "^8.0.1",
     "properties": "^1.2.1",
     "serve-favicon": "~2.4.2",
     "woocommerce-api": "^1.4.2"
